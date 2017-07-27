@@ -5,45 +5,47 @@ const settings = require("./settings.json");
 
 var prefix = "!" //BOT PREFIX
 
-var botStart = 0
+var botStart = 0;
 var restarts = -1;
 
 //Get the profile picture of the player and then publish the full feedback message
 //CHANNEL channel to send to; OBJECT msgInfo of the message to be processed
 function sendFeedbackMessage(channel, msgInfo) {
-	var url = "https://www.roblox.com/bust-thumbnail/json?userId=" + msgInfo.PlayerId + "&height=180&width=180";
+	console.log("sendFeedbackMSg");
+	var url = "https://www.roblox.com/bust-thumbnail/json?userId=" + msgInfo.playerId + "&height=180&width=180";
 	request({
 		url: url,
 		json: true
 	}, function (error, response, body) {
 		if (!error && response.statusCode === 200) {
-			//console.log(body.Url)//for testing
+			console.log(body.Url)//for testing
 
 			const embed = new discord.RichEmbed()
 				.setColor(0x00AE86) //hex color code for the embed message
 				.setThumbnail(body.Url) //process user id to get profile picture
-				.setDescription("**" + msgInfo.PlayerName + "** \n *" + msgInfo.text + "*\n\n `UserID: " + msgInfo.PlayerId + "`"); //the good stuff that displays the text
+				.setDescription("**" + msgInfo.playerName + "** \n *" + msgInfo.text + "*\n\n `UserID: " + msgInfo.playerId + "`"); //the good stuff that displays the text
 			channel.send({ embed });
-			
+		} else {
+			console.log("response bad");
 		}
 	})
 }
 
 //on client start
 client.on("ready", () => {
-	console.log("Bot started, ready to roll!")
+	console.log("Bot started, ready to roll!");
 	restarts += 1;
 	botStart = Math.floor(new Date() / 1000);
 });
 
 //on message
 client.on("message", msg => {
-	if (!msg.content.startsWith(prefix)){
+	if (!msg.content.startsWith(prefix) && !msg.channel.name === settings.ircChannelName){
 		return
 	};
 
 	if (msg.channel.name === settings.ircChannelName) { //process irc message
-		var ircJSON = JSON.parse(msg.content)
+		var ircJSON = JSON.parse(msg.content);
 		//todo: add a catch for invalid json data
 		const feedbackChannel = msg.guild.channels.find("name", settings.displayChannelName);
 		//todo: add a catch for invalid feedback channel selection in settings.json
@@ -64,10 +66,10 @@ client.on("message", msg => {
 				"text": "Game's real good but there's not enough fish in it. Something something Text Here"
 			};
 			const feedbackChannel = msg.guild.channels.find("name", settings.displayChannelName);
-			sendFeedbackMessage(feedbackChannel,example)
+			sendFeedbackMessage(feedbackChannel, example);
 		}
 	}
 });
 
 
-client.login(settings.token)
+client.login(settings.token);
