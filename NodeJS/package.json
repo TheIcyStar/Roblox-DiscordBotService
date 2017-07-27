@@ -1,0 +1,18 @@
+{
+  "name": "Roblox-DiscordBotService",
+  "version": "1.0.0",
+  "description": "A discord bot that formats data from a webhook channel",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "TheIcyStar",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "request": "^2.81.0"
+  }
+}
