@@ -43,6 +43,6 @@ end
 --example "on join" messanger
 game.Players.PlayerAdded:connect(function (plyr)
 	local msgInfo = newFormattedInfo(plyr.Name,plyr.UserId, plyr.Name.." has joined the game.") --create a message (that is readable by the bot) saying that a player has joined the game
-	local msgObj = (NewMSG,GAME_NAME)	--then pack that message into a thing that will be sent to discord
+	local msgObj = NewMSG(msgInfo,GAME_NAME)	--then pack that message into a thing that will be sent to discord
 	http:PostAsync(targetUrl, msgObj)	--and finally send it to discord
 end)
