@@ -25,7 +25,7 @@ function newFormattedInfo(playerName,playerId,text)
 		['playerId'] = playerId,
 		['text'] = text
 	}
-	return obj
+	return http:JSONEncode(obj)
 end
 
 --Discord API message creation
