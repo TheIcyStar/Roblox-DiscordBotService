@@ -4,8 +4,6 @@
 	MIT License
 		INFO: This script sends a json text to an irc channel via a discord webhook. The bot then picks this up, formats it, and puts it into (for example) a game feedback channel.
 		INSTALLATION: Turn on HTTPService, place script in ServerScriptService, and adjust config variables
-		USAGE: 
-
 --]]
 
 local targetUrl = "" --Discord webhook URL
