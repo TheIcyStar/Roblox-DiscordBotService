@@ -1,6 +1,6 @@
 # Important notice
-Discord has now blocked all webhooks from Roblox, which breaks the code in this project.
-I plan on issuing a workaround soon by including a server in the NodeJS part of the code.
+**Discord has now blocked all webhooks from Roblox, which breaks the code in this project.**
+**I plan on issuing a workaround soon by including a server in the NodeJS part of the code.**
 
 # Roblox-DiscordBotService
 A discord bot that takes messages from a roblox game and then published messages to a discord channel.
