@@ -1,5 +1,4 @@
 ﻿{
-	"ircChannelName": "irc",
-	"displayChannelName":  "roblox_player_logs",
-	"token": ""
+	"token": "",
+	"version":  "2.0.0"
 }
