@@ -1,7 +1,7 @@
 {
   "name": "Roblox-DiscordBotService",
-  "version": "1.0.0",
-  "description": "A discord bot that formats data from a webhook channel",
+  "version": "2.0.0",
+  "description": "A discord bot and web server combo that handles requests to send messages to channels in discord",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,9 @@
   "author": "TheIcyStar",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.1.0",
-    "request": "^2.81.0"
+    "body-parser": "^1.18.2",
+    "discord.js": "^11.3.2",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
   }
 }
