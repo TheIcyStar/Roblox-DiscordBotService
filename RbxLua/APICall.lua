@@ -8,12 +8,6 @@
 		
 		INSTALLATION: Place in ServerScriptService. HTTPEnabled must be true.
 --]]
-
-
---Info: Place in ServerScriptService. HTTPEnabled must be true.
---Description: This script is an example usage of the discord bot.
-
-
 local targetUrl = "http://www.example.com:3000/api/bots"
 
 local http = game:GetService("HttpService")
