@@ -1,0 +1,14 @@
+{
+	"Operations": {
+			"MainUser": {
+				"guildId": "000000000000000000",
+				"commandChannelName": "botspam",
+				"apikey": "Recommended to use a 24 character long alphanumeric string"
+			},
+			"AnotherUser": {
+				"guildId": "000000000000000001",
+				"commandChannelName": "bot_commands",
+				"apikey": "a302A6bxz9UzO8PwS2nmF33i"
+			}
+	}
+}
