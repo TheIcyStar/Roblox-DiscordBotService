@@ -60,5 +60,6 @@ typings/
 # next.js build output
 .next
 
-# user config file
+# user config files
 NodeJS/users.json
+NodeJS/settings.json

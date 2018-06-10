@@ -18,10 +18,13 @@ this will install of the necessary dependancies
 
 3) Follow this guide to create a bot: https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
 
-4) Copy the "Client Secret" token under APP details and put the token into the `"token"` field in **NodeJS/settings.json**
+4) Copy the "Client Secret" token under APP details and put the token into the `"token"` field in **NodeJS/settings.json.example**
 
-5) Obtain the GuildID of the server that you will be running your bot on and put it into the `"guildId"` field in **NodeJS/users.json**
+5) Obtain the GuildID of the server that you will be running your bot on and put it into the `"guildId"` field in **NodeJS/users.json.example**
 (you can find the guild id by opening up discord's settings and turning on developer mode, then right clicking on the server)
+
+6) Remove the **.example** from **NodeJS/settings.json.example** and **NodeJS/users.json.example**.
+(this .example was added to use sensitive data files safely while using git)
 
 6) choose the channel that the bot will listen for commands in and choose an API key. 
 (It's highly recommended to use something like a password generator to create your api key. Make sure it is at least 24 characters long)
