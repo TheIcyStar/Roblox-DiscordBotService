@@ -43,7 +43,8 @@ expressApp.post("/api/bots", function (req, res) {
 				const options = {
 					"playerId": req.body.message.playerId,
 					"playerName": req.body.message.playerName,
-					"text": req.body.message.text
+					"text": req.body.message.text,
+					"waitForProfPic": req.body.waitForPictureReady
 				};
 				sendFeedbackMessage(channel, options);
 			}
@@ -78,8 +79,8 @@ expressApp.post("/api/bots", function (req, res) {
 	}
 });
 
-expressApp.listen(3000);
-console.log("Running express on port 3000...");
+expressApp.listen(13000);
+console.log("Running express on port 13000...");
 
 
 
@@ -99,6 +100,17 @@ function sendFeedbackMessage(channel, msgInfo) {
 		json: true
 	}, function (error, response, body) {
 		if (!error && response.statusCode === 200) {
+			if (msgInfo.waitForProfPic && body.Final === false) {
+				console.log("No profile picture ready, waiting. " + body.Url);
+				setTimeout(sendFeedbackMessage, 5000, channel, msgInfo);
+				return;
+			} else {
+				console.log("Message good! "+ body.Url);
+				console.log("response: " + body.Final);
+				console.log("Tetsing: " + (body.Final === true));
+				console.log("profpicwait: " + (msgInfo.waitForProfPic));
+				console.log("");
+			}
 
 			const embed = new discord.RichEmbed()
 				.setColor(0x00AE86) //hex color code for the embed message
