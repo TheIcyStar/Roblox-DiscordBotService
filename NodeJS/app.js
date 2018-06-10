@@ -52,8 +52,6 @@ expressApp.post("/api/bots", function (req, res) {
 			res.status(404).send('Could not find channel name');
 		}
 
-
-	} 
 	/* Use else if statements if you would like to have multiple API keys running
 	else if (req.body.key === userSettings.Operations.AnotherUser.apikey) {
 
@@ -75,7 +73,7 @@ expressApp.post("/api/bots", function (req, res) {
 		}
 
 	*/
-	}else {
+	} else {
 		res.send("invalid key!");
 	}
 });
