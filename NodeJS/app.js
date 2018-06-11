@@ -64,7 +64,8 @@ expressApp.post("/api/bots", function (req, res) {
 				const options = {
 					"playerId": req.body.message.playerId,
 					"playerName": req.body.message.playerName,
-					"text": req.body.message.text
+					"text": req.body.message.text,
+					"waitForProfPic": req.body.waitForPictureReady
 				};
 				sendFeedbackMessage(channel, options);
 			}
@@ -93,7 +94,6 @@ console.log("Running express on port 13000...");
 //Get the profile picture of the player and then publish the full feedback message
 //CHANNEL channel to send to; OBJECT msgInfo of the message to be processed
 function sendFeedbackMessage(channel, msgInfo) {
-	//console.log("sendFeedbackMSg");
 	var url = "https://www.roblox.com/bust-thumbnail/json?userId=" + msgInfo.playerId + "&height=180&width=180";
 	request({
 		url: url,
@@ -102,14 +102,8 @@ function sendFeedbackMessage(channel, msgInfo) {
 		if (!error && response.statusCode === 200) {
 			if (msgInfo.waitForProfPic && body.Final === false) {
 				console.log("No profile picture ready, waiting. " + body.Url);
-				setTimeout(sendFeedbackMessage, 5000, channel, msgInfo);
+				setTimeout(sendFeedbackMessage, 7000, channel, msgInfo);
 				return;
-			} else {
-				console.log("Message good! "+ body.Url);
-				console.log("response: " + body.Final);
-				console.log("Tetsing: " + (body.Final === true));
-				console.log("profpicwait: " + (msgInfo.waitForProfPic));
-				console.log("");
 			}
 
 			const embed = new discord.RichEmbed()
