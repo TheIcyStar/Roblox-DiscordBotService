@@ -121,32 +121,30 @@ client.on("message", msg => {
 
 	//later: figure out how to manage per-guild settings
 	if (msg.content === prefix + "help" || msg.content === prefix + "commands") {
-		msg.channel.send("***Roblox-DiscordBotService - check out the github! https://github.com/TheIcyStar/Roblox-DiscordBotService*** \n" +
+		msg.channel.send("******Roblox-DiscordBotService "+ settings.version +" - check out the github! https://github.com/TheIcyStar/Roblox-DiscordBotService*** \n" +
+			"Running NodeJS "+ process.version +" and forever.js \n" +
 			"Availible commands: **!help**, **!giveExample**, **!uptime** \n" +
-			//"add more lines if needed...." +
 			"");
 	} else if (msg.content === prefix + "giveExample") {
 		const example = {
-			"game_name": "Example game",
 			"playerId": "28969907",
 			"playerName": "OnlyTwentyCharacters",
 			"text": "Game's real good but there's not enough fish in it. Something something Text Here"
 		};
 		sendFeedbackMessage(msg.channel, example);
 	} else if (msg.content === prefix + "uptime") {
-		msg.channel.send("*This bot has been up for*  **" + (Math.floor(new Date() / 1000) - botStart) + "** *seconds and has restarted*  **" + restarts + "** times.");
+		var seconds = (Math.floor(new Date() / 1000) - botStart);
+		var minutes = Math.floor(seconds / 60);
+		var hours = Math.floor(minutes / 60) % 24;
+		var days = Math.floor(hours / 24);
+		msg.channel.send("*This bot instance has been up for*  **" +
+		days + "d " +
+		(hours%24) + "h " +
+		(minutes%60) + "m " +
+		(seconds%60) + "s " +
+		"**");
 	} else if (msg.content === prefix + "stats") {
-		
-		//easter egg, if rng rolls a 15
-		var easteregg = Math.floor(Math.random() * Math.floor(16))
-		if (easteregg < 15) {
-			msg.channel.send("*Since start, there has been*  **" + apiCalls + "** *api calls,*  **" + commands + "** *commands, and*  **0** *plots for world domination.*");
-		} else {
-			msg.channel.send("*Since start, there has been*  **" + apiCalls + "** *api calls,*  **" + commands + "** *commands, and*  **1** *plot for world domination.*");
-		}
-		
-	} else if (msg.content === prefix + "version") {
-		msg.channel.send("*Running version*  " + settings.version);
+		msg.channel.send("*Since start, there has been*  **" + apiCalls + "** *api calls,*  **" + commands + "** *commands, and*  **0** *plots for world domination.*");
 	}
 });
 
