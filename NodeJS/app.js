@@ -30,53 +30,35 @@ expressApp.get("/", function (req, res) {
 
 expressApp.post("/api/bots", function (req, res) {
 	apiCalls = apiCalls + 1;
-	//console.log("API call");
 
-	//todo: rewrite to make code scale better with more operations
+	var userGuildId = 0
+
 	if (req.body.key === userSettings.Operations.MainUser.apikey) {
-
-		var channel = client.guilds.get(userSettings.Operations.MainUser.guildId).channels.find("name", req.body.channel);
-		if (channel) {
-			if (req.body.messageType == "plaintext") {
-				channel.send(req.body.message.text);
-			} else if (req.body.messageType == "playerProfile") {
-				const options = {
-					"playerId": req.body.message.playerId,
-					"playerName": req.body.message.playerName,
-					"text": req.body.message.text,
-					"waitForProfPic": req.body.waitForPictureReady
-				};
-				sendFeedbackMessage(channel, options);
-			}
-			res.send("success");
-		} else {
-			res.status(404).send('Could not find channel name');
-		}
-
-	/* Use else if statements if you would like to have multiple API keys running
-	else if (req.body.key === userSettings.Operations.AnotherUser.apikey) {
-
-		var channel = client.guilds.get(userSettings.Operations.AnotherUser.guildId).channels.find("name", req.body.channel);
-		if (channel) {
-			if (req.body.messageType == "plaintext") {
-				channel.send(req.body.message.text);
-			} else if (req.body.messageType == "playerProfile") {
-				const options = {
-					"playerId": req.body.message.playerId,
-					"playerName": req.body.message.playerName,
-					"text": req.body.message.text,
-					"waitForProfPic": req.body.waitForPictureReady
-				};
-				sendFeedbackMessage(channel, options);
-			}
-			res.send("success");
-		} else {
-			res.status(404).send('Could not find channel name');
-		}
-
-	*/
+		userGuildId = userSettings.Operations.MainUser.guildId;
+	//} else if (req.body.key === userSettings.Operations.AnotherUser.apikey) {
+	//	userGuildId = userSettings.Operations.Blockage.guildId;
 	} else {
+		console.log("Somebody used an invalid API key.");
 		res.send("invalid key!");
+		return;
+	}
+
+	var channel = client.guilds.get(userGu).channels.find("name", req.body.channel);
+	if (channel) {
+		if (req.body.messageType == "plaintext") {
+			channel.send(req.body.message.text);
+		} else if (req.body.messageType == "playerProfile") {
+			const options = {
+				"playerId": req.body.message.playerId,
+				"playerName": req.body.message.playerName,
+				"text": req.body.message.text,
+				"waitForProfPic": req.body.waitForPictureReady
+			};
+			sendFeedbackMessage(channel, options);
+		}
+		res.send("success");
+	} else {
+		res.status(404).send('Could not find channel name');
 	}
 });
 
