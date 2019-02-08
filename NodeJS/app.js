@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 
 const expressApp = express();
 const client = new discord.Client();
-const settings = require("./settings.json");
-const userSettings = require("./users.json");
+const settings = require("./config/settings.json");
+const userSettings = require("./config/users.json");
 
 var prefix = "!" //BOT PREFIX
 var botStart = 0;
