@@ -8,7 +8,7 @@
 		
 		INSTALLATION: Place in ServerScriptService. HTTPEnabled must be true.
 --]]
-local targetUrl = "http://www.example.com:3000/api/bots"
+local targetUrl = "http://www.example.com:13000/api/bots"
 
 local http = game:GetService("HttpService")
 
