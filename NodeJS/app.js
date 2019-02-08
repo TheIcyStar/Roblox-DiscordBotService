@@ -43,20 +43,25 @@ expressApp.post("/api/bots", function (req, res) {
 		return;
 	}
 
-	var channel = client.guilds.get(userGu).channels.find("name", req.body.channel);
+	var channel = client.guilds.get(userGuildId).channels.find(x => x.name === req.body.channel);
 	if (channel) {
 		if (req.body.messageType == "plaintext") {
 			channel.send(req.body.message.text);
+			res.send("success");
 		} else if (req.body.messageType == "playerProfile") {
-			const options = {
-				"playerId": req.body.message.playerId,
-				"playerName": req.body.message.playerName,
-				"text": req.body.message.text,
-				"waitForProfPic": req.body.waitForPictureReady
-			};
-			sendFeedbackMessage(channel, options);
+			if(req.body.message.text.length > 1) {
+				const options = {
+					"playerId": req.body.message.playerId,
+					"playerName": req.body.message.playerName,
+					"text": req.body.message.text,
+					"waitForPictureReady": req.body.waitForPictureReady
+				};
+				sendFeedbackMessage(channel, options, 0);
+				res.send("success");
+			} else {
+				res.status(400).send('Text is empty');
+			}
 		}
-		res.send("success");
 	} else {
 		res.status(404).send('Could not find channel name');
 	}
