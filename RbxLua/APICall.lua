@@ -32,6 +32,7 @@ function NewJSON(message)
 		['key'] = "Your key",
 		["messageType"] = "playerProfile",
 		["channel"] = "general",
+		["waitForPictureReady"] = true,
 		["message"] = {
 			["text"] = "Feedback from a roblox server!",
 			["playerName"] = "OnlyTwentyCharacters",
