@@ -15,7 +15,7 @@ local http = game:GetService("HttpService")
 
 --Discord API message creation
 function NewJSON(message)
-	--[
+	--[ --regular text message
 	local obj = {
 		['key'] = "Your key",
 		["messageType"] = "plaintext",
@@ -26,8 +26,7 @@ function NewJSON(message)
 	}
 	--]]
 
-
-	--[[
+	--[[ --Message with a player profile picture
 	local obj = {
 		['key'] = "Your key",
 		["messageType"] = "playerProfile",
@@ -46,7 +45,6 @@ end
 
 --Main "on join" messenger
 game.Players.PlayerAdded:connect(function (plyr)
-	
 	local response = http:PostAsync(targetUrl,NewJSON())
 	
 	print("Response: "..response)
