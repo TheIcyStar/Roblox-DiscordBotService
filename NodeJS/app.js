@@ -36,7 +36,7 @@ expressApp.post("/api/bots", function (req, res) {
 	if (req.body.key === userSettings.Operations.MainUser.apikey) {
 		userGuildId = userSettings.Operations.MainUser.guildId;
 	//} else if (req.body.key === userSettings.Operations.AnotherUser.apikey) {
-	//	userGuildId = userSettings.Operations.Blockage.guildId;
+	//	userGuildId = userSettings.Operations.AnotherUser.guildId;
 	} else {
 		console.log("Somebody used an invalid API key.");
 		res.send("invalid key!");
